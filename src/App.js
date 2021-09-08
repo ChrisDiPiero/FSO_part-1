@@ -1,38 +1,71 @@
 import React, { useState } from 'react'
 
+//start 1.6 - 1.14
+const Display = props => <span>{props.value}</span>
 
+// const Button = (props) => (
+//   <button onClick={props.handleClick}>
+//     {props.text}
+//   </button>
+// )
 
 const App = () => {
-  const [left, setLeft] = useState(0)
-  const [right, setRight] = useState(0)
-  const [allClicks, setAll] = useState([])
 
-  const handleLeftClick = () => {
-    setAll(allClicks.concat('L'))
-    setLeft(left + 1)
-  }
+  const [goodCount, setGoodCount] = useState(0)
+  const [neutralCount, setNeutralCount] = useState(0)
+  const [badCount, setBadCount] = useState(0)
 
-  const handleRightClick = () => {
-    setAll(allClicks.concat('R'))
-    setRight(right + 1)
-  }
+  // const setToGood = newValue => { setGoodCount(newValue) }
+  // const setToNeutral = newValue => {setNeutralCount(newValue) }
+  // const setToBad = newValue => { setBadCount(newValue) }
 
-  return (
+  return(
     <div>
-      {left}
-      <button onClick={handleLeftClick}>
-        left
-      </button>
-      <button onClick={handleRightClick}>
-        right
-      </button>
-      {right}
-      <p>{allClicks.join(' ')}</p>
+      <h2>give feedback</h2>
+      <button onClick={ () => setGoodCount(goodCount + 1) }>good</button>
+      <button onClick={ () => setNeutralCount(neutralCount + 1) }>neutral</button>
+      <button onClick={ () => setBadCount(badCount + 1) }>bad</button>
+      <h2>Statistics</h2>
+      <p>good: <Display value={goodCount}/></p>
+      <p>neutral: <Display value={neutralCount}/></p>
+      <p>bad: <Display value={badCount}/></p>
     </div>
   )
 }
 
 export default App;
+
+// const App = () => {
+//   const [left, setLeft] = useState(0)
+//   const [right, setRight] = useState(0)
+//   const [allClicks, setAll] = useState([])
+
+//   const handleLeftClick = () => {
+//     setAll(allClicks.concat('L'))
+//     setLeft(left + 1)
+//   }
+
+//   const handleRightClick = () => {
+//     setAll(allClicks.concat('R'))
+//     setRight(right + 1)
+//   }
+
+//   return (
+//     <div>
+//       {left}
+//       <button onClick={handleLeftClick}>
+//         left
+//       </button>
+//       <button onClick={handleRightClick}>
+//         right
+//       </button>
+//       {right}
+//       <p>{allClicks.join(' ')}</p>
+//     </div>
+//   )
+// }
+
+// export default App;
 
 // const Display = ({ counter }) => <div>{counter}</div>
 
