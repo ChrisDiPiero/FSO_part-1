@@ -11,9 +11,44 @@ const Display = props => <span>{props.value}</span>
 
 const App = () => {
 
-  const [goodCount, setGoodCount] = useState(0)
-  const [neutralCount, setNeutralCount] = useState(0)
-  const [badCount, setBadCount] = useState(0)
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+  const [all, setAll] = useState(1)
+  const [average, setAverage] = useState(0)
+  const [positive, setPositive] = useState(0)
+
+  const update = (review) => {
+
+
+    switch (review) {
+      case 'good':
+        setGood(good + 1)
+        break
+      case 'neutral':
+        setNeutral(neutral + 1)
+        break
+      case 'bad':
+        setBad(bad + 1)
+        break
+      default:
+        return
+    }
+
+    calculateAverage()
+    calculatePositive()
+  }
+
+  const calculateAverage = () => {
+    console.log(all)
+    const calculate = (good - bad) / all 
+    setAverage( calculate )
+  }
+
+  const calculatePositive = () => {
+    const calculate = good / all
+    setPositive( calculate )
+  }
 
   // const setToGood = newValue => { setGoodCount(newValue) }
   // const setToNeutral = newValue => {setNeutralCount(newValue) }
@@ -21,14 +56,24 @@ const App = () => {
 
   return(
     <div>
-      <h2>give feedback</h2>
-      <button onClick={ () => setGoodCount(goodCount + 1) }>good</button>
-      <button onClick={ () => setNeutralCount(neutralCount + 1) }>neutral</button>
-      <button onClick={ () => setBadCount(badCount + 1) }>bad</button>
+      <h2>Give Feedback</h2>
+      <button onClick={ () => { setAll(all + 1) 
+                                update('good') } 
+                      }>good</button>
+      <button onClick={ () => { setAll(all + 1) 
+                                update('neutral') }              
+                        }>neutral</button>
+      <button onClick={ () => { setAll(all + 1)  
+                                update('bad') }
+                        }>bad</button>
+
       <h2>Statistics</h2>
-      <p>good: <Display value={goodCount}/></p>
-      <p>neutral: <Display value={neutralCount}/></p>
-      <p>bad: <Display value={badCount}/></p>
+      <p>Good: <Display value={good}/></p>
+      <p>Neutral: <Display value={neutral}/></p>
+      <p>Bad: <Display value={bad}/></p>
+      <p>All: <Display value={all - 1}/></p>
+      <p>Average: <Display value={average}/></p>
+      <p>Positive: <Display value={positive}/></p>
     </div>
   )
 }
