@@ -4,6 +4,13 @@ import React, { useState } from 'react'
 const Display = props => <span>{props.value}</span>
 
 const Statistics = (props) => {
+  if(!props.all) {
+    return(
+      <div>
+        No stats for you.
+      </div>
+    )
+  }
   return(
     <div>
       <h2>Statistics</h2>
