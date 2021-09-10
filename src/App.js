@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 //start 1.6 - 1.14
-const Display = props => <span>{props.value}</span>
+const StatisticLine = props => <p>{props.text}: {props.value}</p>
 
 const Statistics = (props) => {
   if(!props.all) {
@@ -14,21 +14,21 @@ const Statistics = (props) => {
   return(
     <div>
       <h2>Statistics</h2>
-      <p>Good: <Display value={props.good}/></p>
-      <p>Neutral: <Display value={props.neutral}/></p>
-      <p>Bad: <Display value={props.bad}/></p>
-      <p>All: <Display value={props.all}/></p>
-      <p>Average: <Display value={( props.good - props.bad ) / props.all}/></p>
-      <p>Positive: <Display value={props.good / props.all}/></p>
+      <StatisticLine text="Good"  value={props.good} />
+      <StatisticLine text="Neutral"  value={props.neutral} />
+      <StatisticLine text="Bad"  value={props.bad} />
+      <StatisticLine text="All" value={props.all} />
+      <StatisticLine text="Average" value={( props.good - props.bad ) / props.all} />
+      <StatisticLine text="Positive" value={props.good / props.all} />
     </div>
   )
 }
 
-// const Button = (props) => (
-//   <button onClick={props.handleClick}>
-//     {props.text}
-//   </button>
-// )
+const Button = (props) => (
+  <button onClick={props.handleClick}>
+    {props.text}
+  </button>
+)
 
 const App = () => {
 
@@ -53,11 +53,10 @@ const App = () => {
   return(
     <div>
       <h1>Give Feedback</h1>
-      <button onClick={goodClick}>good</button>
-      <button onClick={neutralClick}>neutral</button>
-      <button onClick={badClick}>bad</button>
+      <Button handleClick={goodClick} text="good" />
+      <Button handleClick={neutralClick} text="neutral" />
+      <Button handleClick={badClick} text="bad" />
       <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
-
     </div>
   )
 }
