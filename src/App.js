@@ -3,6 +3,20 @@ import React, { useState } from 'react'
 //start 1.6 - 1.14
 const Display = props => <span>{props.value}</span>
 
+const Statistics = (props) => {
+  return(
+    <div>
+      <h2>Statistics</h2>
+      <p>Good: <Display value={props.good}/></p>
+      <p>Neutral: <Display value={props.neutral}/></p>
+      <p>Bad: <Display value={props.bad}/></p>
+      <p>All: <Display value={props.all}/></p>
+      <p>Average: <Display value={( props.good - props.bad ) / props.all}/></p>
+      <p>Positive: <Display value={props.good / props.all}/></p>
+    </div>
+  )
+}
+
 // const Button = (props) => (
 //   <button onClick={props.handleClick}>
 //     {props.text}
@@ -31,18 +45,12 @@ const App = () => {
 
   return(
     <div>
-      <h2>Give Feedback</h2>
+      <h1>Give Feedback</h1>
       <button onClick={goodClick}>good</button>
       <button onClick={neutralClick}>neutral</button>
       <button onClick={badClick}>bad</button>
+      <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
 
-      <h2>Statistics</h2>
-      <p>Good: <Display value={good}/></p>
-      <p>Neutral: <Display value={neutral}/></p>
-      <p>Bad: <Display value={bad}/></p>
-      <p>All: <Display value={all}/></p>
-      <p>Average: <Display value={( good - bad ) / all}/></p>
-      <p>Positive: <Display value={good / all}/></p>
     </div>
   )
 }
